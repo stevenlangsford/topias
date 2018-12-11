@@ -23,4 +23,4 @@ npm-debug.log
 *RData
 *.png
 ```
-Assuming you have heroku and your database already set to go, at this point you should be ready to test locally.
+Assuming you have heroku and your database already set to go, at this point you should be ready to test locally with ```heroku local web```
