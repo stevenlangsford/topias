@@ -429,8 +429,6 @@ function demographicsvalidate(){
     var myraterid = document.getElementById("raterid").value;
     dataObj.raterid = myraterid;
     var rateridflag = myraterid.length>0;
-    console.log(colblindflag);
-    console.log(rateridflag);
     console.log(dataObj);
     if(colblindflag&&rateridflag&&visionflag&&handedflag){
 	$.post("/demographics",{demographics:JSON.stringify(dataObj)},
