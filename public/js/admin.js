@@ -84,8 +84,8 @@ function demographics(){
     	"<input type=\"radio\" name=\"colblind\" id=\"notcolblind\" value=\"normalcolor\">&nbsp No &nbsp&nbsp"+
     	"</td></tr>"+
 	"<tr><td>"+
-    	"Do you have normal or corrected-to-normal vision <br/>(ie. if you use glasses for computer work, are you wearing them now?): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes &nbsp&nbsp"+
-    	"<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No &nbsp&nbsp"+
+    	"Do you have normal or corrected-to-normal vision <br/>(ie. either you don't use glasses OR you have them on now): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes, normal vision &nbsp&nbsp"+
+    	"<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No: I use glasses but don't have them on now &nbsp&nbsp"+
     	"</td></tr>"+
 
     "<tr><td>"+
