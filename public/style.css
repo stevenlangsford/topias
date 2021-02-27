@@ -13,10 +13,13 @@ p {
     margin-right:auto; 
  }
 
-.centered, trialdiv {
+.centered, .trialdiv {
+    display:block;
+    padding:10% 0;
     margin-left:auto;
     margin-right:auto;
     text-align:center;
+    width:100%;
  }
 
  button {
@@ -24,3 +27,11 @@ p {
      border-radius:.5em;
      background-color:darkgrey;
  }
+
+ .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  clear:both;
+}

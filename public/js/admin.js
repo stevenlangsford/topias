@@ -1,9 +1,11 @@
 var ppntID = Math.round(Math.random()*10000000);
 localStorage.setItem("ppntID",ppntID); //cookie alternative, retrive with localStorage.getItem("ppntID"). Only stores strings. Used in exp.js to tag trials.
+var utopia_left = Math.random() < .5;
+localStorage.setItem("utopia_left",utopia_left);
 
 var dev = true;//used only in instuctionlist (immediately below) for the moment, could consider putting it in localStorage though and having it trigger verbosity later. Set to false if public-facing.
 var instructionindex = 0;
-var instructionlist = [dev ? "Development version: <button onclick='startExp()'>Skip instructions</button>" : "","Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is UTOPIAN and L if it is DYSTOPIAN","A utopian image is a future paradise where society is doing great. For images that look like one of these, press A. A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press L. If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
+var instructionlist = [dev ? "Development version: <button onclick='startExp()'>Skip instructions</button>" : "","Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
 ]
 
 function nextInstructions(){
@@ -20,17 +22,17 @@ function quiz(){
     document.getElementById("uberdiv").innerHTML="<h3>Are you ready?</h3></br>"+
 	"<span style='text-align:left'><p>"+
 	"<strong>Which key is the one to hit for utopias? </strong></br>"+
-	"<input type='radio' name='q1' id='q1a' value='a'>&nbsp A<br/>"+
+	"<input type='radio' name='q1' id='q1a' value='a'>&nbsp "+(utopia_left ? "A":"L")+"<br/>"+
 	"<input type='radio' name='q1' id='q1b' value='b'>&nbsp S<br/>"+
 	"<input type='radio' name='q1' id='q1c' value='c'>&nbsp K<br/>"+
-	"<input type='radio' name='q1' id='q1d' value='d'>&nbsp L<br/>"+
+	"<input type='radio' name='q1' id='q1d' value='d'>&nbsp "+(utopia_left ? "L":"A")+"<br/>"+
 	"</span>"+
 	"<span style='text-align:left'><p>"+
 	"<strong>Which key is the one to hit for dystopias? </strong></br>"+
-	"<input type='radio' name='q2' id='q2a' value='a'>&nbsp A <br/>"+
+	"<input type='radio' name='q2' id='q2a' value='a'>&nbsp "+(utopia_left ? "A":"L")+" <br/>"+
 	"<input type='radio' name='q2' id='q2b' value='b'>&nbsp S  <br/>"+
 	"<input type='radio' name='q2' id='q2c' value='c'>&nbsp K <br/>"+
-	"<input type='radio' name='q2' id='q2d' value='d'>&nbsp L <br/>"+
+	"<input type='radio' name='q2' id='q2d' value='d'>&nbsp "+(utopia_left ? "L":"A")+" <br/>"+
 	"</span>"+
 	"<span style='text-align:left'><p>"+
 	 "<strong>Which of these words has the most similar meaning to 'utopia'?</strong></br>"+
@@ -80,6 +82,15 @@ function demographics(){
     	"<tr><td>"+
     	"Do you have any kind of colorblindness: <input type=\"radio\" name=\"colblind\" id=\"colblind\" value=\"colblind\">&nbsp Yes &nbsp&nbsp"+
     	"<input type=\"radio\" name=\"colblind\" id=\"notcolblind\" value=\"normalcolor\">&nbsp No &nbsp&nbsp"+
+    	"</td></tr>"+
+	"<tr><td>"+
+    	"Do you have normal or corrected-to-normal vision (if you use glasses for computer work, are you wearing them now?): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes &nbsp&nbsp"+
+    	"<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No &nbsp&nbsp"+
+    	"</td></tr>"+
+
+    "<tr><td>"+
+    	"Are you right-handed? <input type=\"radio\" name=\"righthand\" id=\"righty\" value=\"righthand\">&nbsp Right handed &nbsp&nbsp"+
+    	"<input type=\"radio\" name=\"righthand\" id=\"leftie\" value=\"lefthand\">&nbsp Left handed &nbsp&nbsp"+
     	"</td></tr>"+
     	// "<tr><td>"+
     	// "Age:<input type=\"text\" id=\"age\">"+
@@ -397,14 +408,34 @@ function demographicsvalidate(){
     	    colblindflag=true;
     	}
     }
+
+    var normalvision=document.getElementsByName("normalvision");
+    var visionflag = false;
+    for(var i=0;i<normalvision.length;i++){
+	console.log("checking "+i+"status"+normalvision[i].checked)
+    	if(normalvision[i].checked){
+    	    dataObj.vision = normalvision[i].value;
+    	    visionflag=true;
+    	}
+    }
+
+    var righthanded=document.getElementsByName("righthand");
+    var handedflag = false;
+    for(var i=0;i<righthanded.length;i++){
+	console.log("checking "+i+"status"+righthanded[i].checked)
+    	if(righthanded[i].checked){
+    	    dataObj.handed = righthanded[i].value;
+    	    handedflag=true;
+    	}
+    }   
+    
     var myraterid = document.getElementById("raterid").value;
     dataObj.raterid = myraterid;
     var rateridflag = myraterid.length>0;
     console.log(colblindflag);
     console.log(rateridflag);
     console.log(dataObj);
-    if(colblindflag&&rateridflag){
-	console.log("kden")
+    if(colblindflag&&rateridflag&&visionflag&&handedflag){
 	$.post("/demographics",{demographics:JSON.stringify(dataObj)},
 	       function(success){
 		   console.log(success);//probably 'success', might be an error
@@ -414,10 +445,6 @@ function demographicsvalidate(){
 	      );
     }else {alert("Please answer all the questions.");}
 }
-
-// function demographics(){
-//     document.getElementById("uberdiv").innerHTML="<p>Demographics questions</br><button onclick='startExp()'>Submit</button></p>"
-// }
 
 function startExp(){
     $.post('/exp',
