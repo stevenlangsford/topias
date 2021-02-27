@@ -33,7 +33,7 @@ function responseListener(aresponse){//global so it'll be just sitting here avai
     trials[trialindex].response = aresponse;
     trials[trialindex].responseTime= Date.now();
     trials[trialindex].responseMeans = responseMeaning(aresponse);
-
+    console.log("posting:"+JSON.stringify(trials[trialindex]));
     $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
     	console.log(success);//For now server returns the string "success" for success, otherwise error message.
     });
