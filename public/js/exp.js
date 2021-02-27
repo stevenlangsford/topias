@@ -29,11 +29,14 @@ document.addEventListener('keyup', (e) => {
 });
 function responseListener(aresponse){//global so it'll be just sitting here available for the trial objects to use. So, it must accept whatever they're passing.
     //    console.log("responseListener heard: "+aresponse); //diag
+    console.log('responselistener: '+aresponse);
     keys_live = false;
     trials[trialindex].response = aresponse;
     trials[trialindex].responseTime= Date.now();
     trials[trialindex].responseMeans = responseMeaning(aresponse);
+    
     console.log("posting:"+JSON.stringify(trials[trialindex]));
+
     $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
     	console.log(success);//For now server returns the string "success" for success, otherwise error message.
     });
