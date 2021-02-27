@@ -402,6 +402,7 @@ function demographicsvalidate(){
     var colblindchoice=document.getElementsByName("colblind");
     var colblindflag = false;
     for(var i=0;i<colblindchoice.length;i++){
+	console.log("checking "+i+"status"+colblindchoice[i].checked)
     	if(colblindchoice[i].checked){
     	    dataObj.colblind = colblindchoice[i].value;
     	    colblindflag=true;
@@ -411,6 +412,7 @@ function demographicsvalidate(){
     var normalvision=document.getElementsByName("normalvision");
     var visionflag = false;
     for(var i=0;i<normalvision.length;i++){
+	console.log("checking "+i+"status"+normalvision[i].checked)
     	if(normalvision[i].checked){
     	    dataObj.vision = normalvision[i].value;
     	    visionflag=true;
@@ -420,6 +422,7 @@ function demographicsvalidate(){
     var righthanded=document.getElementsByName("righthand");
     var handedflag = false;
     for(var i=0;i<righthanded.length;i++){
+	console.log("checking "+i+"status"+righthanded[i].checked)
     	if(righthanded[i].checked){
     	    dataObj.handed = righthanded[i].value;
     	    handedflag=true;
