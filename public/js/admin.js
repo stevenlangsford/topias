@@ -5,7 +5,7 @@ localStorage.setItem("utopia_left",utopia_left);
 
 var dev = false;//used only in instuctionlist (immediately below) for the moment, could consider putting it in localStorage though and having it trigger verbosity later. Set to false if public-facing.
 var instructionindex = 0;
-var instructionlist = [dev ? "Development version: <button onclick='startExp()'>Skip instructions</button>" : "","Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
+var instructionlist = ["Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
 ]
 
 function nextInstructions(){
@@ -84,7 +84,7 @@ function demographics(){
     	"<input type=\"radio\" name=\"colblind\" id=\"notcolblind\" value=\"normalcolor\">&nbsp No &nbsp&nbsp"+
     	"</td></tr>"+
 	"<tr><td>"+
-    	"Do you have normal or corrected-to-normal vision (if you use glasses for computer work, are you wearing them now?): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes &nbsp&nbsp"+
+    	"Do you have normal or corrected-to-normal vision <br/>(ie. if you use glasses for computer work, are you wearing them now?): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes &nbsp&nbsp"+
     	"<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No &nbsp&nbsp"+
     	"</td></tr>"+
 
