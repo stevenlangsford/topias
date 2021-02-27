@@ -431,13 +431,14 @@ function demographicsvalidate(){
     var rateridflag = myraterid.length>0;
     console.log(dataObj);
     if(colblindflag&&rateridflag&&visionflag&&handedflag){
-	$.post("/demographics",{demographics:JSON.stringify(dataObj)},
-	       function(success){
-		   console.log(success);//probably 'success', might be an error
-		   //ok all done.
-		   if(success=="success")startExp();
-	       }
-	      );
+	// $.post("/demographics",{demographics:JSON.stringify(dataObj)},
+	//        function(success){
+	// 	   console.log(success);//probably 'success', might be an error
+	// 	   //ok all done.
+	// 	   if(success=="success")startExp();
+	//        }
+	//       );
+	startExp();
     }else {alert("Please answer all the questions.");}
 }
 

@@ -37,9 +37,9 @@ function responseListener(aresponse){//global so it'll be just sitting here avai
     
     console.log("posting:"+JSON.stringify(trials[trialindex]));
 
-    $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
-    	console.log(success);//For now server returns the string "success" for success, otherwise error message.
-    });
+    // $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
+    // 	console.log(success);//For now server returns the string "success" for success, otherwise error message.
+    // });
     
     //can put this inside the success callback, if the next trial depends on some server-side info.
     trialindex++; //increment index here at the last possible minute before drawing the next trial, so trials[trialindex] always refers to the current trial.
