@@ -9,6 +9,7 @@ var trials = [];
 var trialindex = 0;
 var utopia_left = localStorage.getItem("utopia_left");
 var keys_live = false;
+var question_type = ["topia_rating","topia_reason"][0];
 
 function responseMeaning(aresponse){
     if (utopia_left){
@@ -21,34 +22,56 @@ function responseMeaning(aresponse){
 }
 document.addEventListener('keyup', (e) => {
     if (keys_live){
-	if (e.code === "KeyA") responseListener('A')
-	else if (e.code === "KeyL") responseListener('L')
+	if(question_type == "topia_rating"){
+	    if (e.code === "KeyA") responseListener('A');
+	    if (e.code === "KeyL") responseListener('L');
+	    return
+//	    console.log(question_type+ " heard "+ e.code + "no response");
+	}else{//question type == 'topia_reason'
+	    if (e.code === "KeyF") reasonListener('F');
+	    if (e.code === "KeyG") reasonListener('G');
+	    if (e.code === "KeyH") reasonListener('H');
+	    return
+//	    console.log(question_type+ " heard " + e.code + "no response");
+	}
     }else{
 	console.log("keys not live");
     }
 });
-function responseListener(aresponse){//global so it'll be just sitting here available for the trial objects to use. So, it must accept whatever they're passing.
-    //    console.log("responseListener heard: "+aresponse); //diag
-    console.log('responselistener: '+aresponse);
+
+function reasonListener(areason){
     keys_live = false;
-    trials[trialindex].response = aresponse;
-    trials[trialindex].responseTime= Date.now();
-    trials[trialindex].responseMeans = responseMeaning(aresponse);
+    question_type = "topia_rating"
+    console.log("reason_listener "+areason);
+
+    trials[trialindex].reasonTime= Date.now();
     
     console.log("posting:"+JSON.stringify(trials[trialindex]));
-
     // $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
     // 	console.log(success);//For now server returns the string "success" for success, otherwise error message.
     // });
     
     //can put this inside the success callback, if the next trial depends on some server-side info.
+
     trialindex++; //increment index here at the last possible minute before drawing the next trial, so trials[trialindex] always refers to the current trial.
     nextTrial();
 }
 
+function responseListener(aresponse){//global so it'll be just sitting here available for the trial objects to use. So, it must accept whatever they're passing.
+    trials[trialindex].response = aresponse;
+    trials[trialindex].responseTime= Date.now();
+    trials[trialindex].responseMeans = responseMeaning(aresponse);
+    askReason();
+}
+function askReason(){
+    //draw a question to the screen
+    question_type = "topia_reason"
+    document.getElementById("uberdiv").innerHTML = "<p style='text-align:center; width:100%; font-size:2.5em'>Why?</p></br><p style='float:left; padding:70px'>F=color</p><p style='float:right;padding:70px'>H=Shape</p></br><p class='centered'>G=Texture</p>";
+}
+
 function drawBlank(){
 	document.getElementById("uberdiv").innerHTML =
-	    "<div class='trialdiv'><img src='/img/blank.png'</img></div>"+
+	    "<div class='trialdiv'><img class='centered' src='/img/blank.png' style='width:20%'></img></div>"+
 	"<div class='footer' style='padding:10%'><p style='float:left'> Tap 'A' for<br/><span id='lefttopia'>"+(utopia_left ? "Utopia" : "Dystopia")+"</span></p><p style='float:right'>Tap 'L' for<br/><span id='righttopia'>"+(utopia_left ? "Dystopia" : "Utopia")+"</span> </p></div><div class='footer' style='text-align:center; width:100%'><p>"+(trialindex+1)+" of "+(trials.length)+"</p></div>";
 }
 

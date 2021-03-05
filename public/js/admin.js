@@ -5,14 +5,14 @@ localStorage.setItem("utopia_left",utopia_left);
 
 var dev = false;//used only in instuctionlist (immediately below) for the moment, could consider putting it in localStorage though and having it trigger verbosity later. Set to false if public-facing.
 var instructionindex = 0;
-var instructionlist = ["Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
+var instructionlist = ["Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","After each decision, you'll be asked if the main factor in your decision was the <strong>colors</strong> in the image, the <strong>texture</strong> of the image, or the <strong>shapes</strong> in the image.","To say that color was most important in your decision, press F </br> To say that texture was most important in your decision, press G</br> To say that shape was most important in your decision, press H","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
 ]
 
 function nextInstructions(){
     var nextButton = "<button id='nextbutton' onclick='nextInstructions()'>Next</button>"
     document.getElementById("uberdiv").innerHTML="<p class='centered'>"+instructionlist[instructionindex]+"</br>"+nextButton+"</p>";
     instructionindex++;
-    if(instructionindex>=instructionlist.length)quiz()
+    if(instructionindex>=instructionlist.length) demographics()//quiz() //skip the quiz, this is for SAH internal folks, they'll be fine.
 }
 
 
