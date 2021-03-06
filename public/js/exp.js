@@ -45,11 +45,15 @@ function reasonListener(areason){
     console.log("reason_listener "+areason);
 
     trials[trialindex].reasonTime= Date.now();
+    trials[trialindex].reasonKey = areason;
+    if(areason=='F') trials[trialindex].reasonMeans="color"
+    if(areason=='G') trials[trialindex].reasonMeans="texture"
+    if(areason=='H') trials[trialindex].reasonMeans="shape"
     
     console.log("posting:"+JSON.stringify(trials[trialindex]));
-    // $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
-    // 	console.log(success);//For now server returns the string "success" for success, otherwise error message.
-    // });
+    $.post('/response',{myresponse:JSON.stringify(trials[trialindex])},function(success){
+    	console.log(success);//For now server returns the string "success" for success, otherwise error message.
+    });
     
     //can put this inside the success callback, if the next trial depends on some server-side info.
 

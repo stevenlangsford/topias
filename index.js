@@ -81,21 +81,21 @@ app.get("/getresponses",requireLogin,function(req,res){
 app.get("/getdemographics",requireLogin,function(req,res){
     var pool = new pg.Pool({connectionString:process.env.DATABASE_URL});
     pool.connect(function(err,client,done){
-	client.query('select * from demographics',function(err,result){
-	    if(err){
-		{console.error(err); res.send("Error "+err);}
-		}else{
-		    //TODO do something sensible if there are no results!
-		    var fields = Object.keys(JSON.parse(result.rows[0].demoobj));
-		    var responses = [];
-		    	   for(var i=0;i<result.rowCount;i++){
-			       responses.push(JSON.parse(result.rows[i].demoobj));
-			   }
-		    var response_csv = json2csv({data: responses, fields:fields});
-		    res.attachment("demographicsdata.csv");
-		    res.send(response_csv);
-		}
-	});//end query
+    	client.query('select * from demographics',function(err,result){
+    	    if(err){
+    		{console.error(err); res.send("Error "+err);}
+    		}else{
+    		    //TODO do something sensible if there are no results!
+    		    var fields = Object.keys(JSON.parse(result.rows[0].demoobj));
+    		    var responses = [];
+    		    	   for(var i=0;i<result.rowCount;i++){
+    			       responses.push(JSON.parse(result.rows[i].demoobj));
+    			   }
+    		    var response_csv = json2csv({data: responses, fields:fields});
+    		    res.attachment("demographicsdata.csv");
+    		    res.send(response_csv);
+    		}
+    	});//end query
     });
     pool.end();    
 });
@@ -125,50 +125,79 @@ app.post('/finish',function(req,res){
 
 //Paricipant data-saving routes, push stuff to the database (but don't render new pages.)
 app.post('/demographics',function(req,res){
-//save the response in db
+    //save the response in db
+    console.log("in demographics")
     var pool = new pg.Pool(
 	{connectionString:process.env.DATABASE_URL}
-    )    
+    )
+    //alternative tute: also unresponsive?
+    // pool.on("connect",() => {console.log("pool on connected")});
+
+    // pool
+    // 	.query('insert into demographics values("one","two")')
+    // 	.then((res) => {
+    // 	    console.log(res);
+    // 	    pool.end();
+    // 	})
+    
+    // pool.on("remove",() => {console.log("pool on removed"); process.exit(0)});
+
+    
     // connection using created pool
+    console.log("pool created")
     pool.connect(function(err, client, done) {
+    	console.log("inside connect")
     	client.query('insert into demographics values ($1, $2)', //Probably a crime to save a multi-value objs in one 'info' col. Oh well.
-		     [Date.now(),
-		     req.body.demographics],
+    		     [Date.now(),
+    		     req.body.demographics],
     		     function(err, result){
     			 if (err)
-    			 {console.error(err); res.send("Error " + err); } //For now the client just prints the error to the console. What's ideal?
+    			 {console.log("error");console.error(err); res.send("Error " + err); } //For now the client just prints the error to the console. What's ideal?
     			 else
     			 { // response.render('pages/db', {results: result.rows});
+    			     console.log("success");
     			     res.send("success");
     			 }
     		     });//end query
-	done();
+    	console.log("done");
+    	done();
     });
+    console.log("pool end");
     pool.end()
+    console.log("FIN");
 });
 
 
 app.post('/response',function(req,res){
-//save the response in db
+    //save the response in db
+    console.log("in post response")
     var pool = new pg.Pool(
 	{connectionString:process.env.DATABASE_URL}
     )    
     // connection using created pool
+    console.log("pool created: "+process.env.DATABASE_URL);
+    
     pool.connect(function(err, client, done) {
+	    console.log("client query")
     	client.query('insert into responses values ($1,$2)', //NOTE this assumes table responses exists with cols 'time', 'responseobj' !
 		     [Date.now(),
 		     req.body.myresponse],
     		     function(err, result){
     			 if (err)
-    			 {console.error(err); res.send("Error " + err); } //For now the client just prints the error to the console. What's ideal?
+    			 {console.error(err); res.send("Error " + err); console.log("err")} //For now the client just prints the error to the console. What's ideal?
     			 else
     			 { // response.render('pages/db', {results: result.rows});
+			     console.log("success")
     			     res.send("success");
     			 }
     		     });//end query
+	    console.log("done")
 	done();
-    });
+    });//end pool.connect
+    
+    console.log("pool end")
     pool.end()
+    console.log("FIN")
 });
 
 
