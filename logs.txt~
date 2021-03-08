@@ -1,0 +1,100 @@
+2021-03-08T08:49:45.324379+00:00 heroku[router]: at=info method=GET path="/" host=topiaclass.herokuapp.com request_id=142289da-4184-4ee1-9ab9-e3cd0ccfd028 fwd="80.62.116.167" dyno=web.1 connect=0ms service=28ms status=304 bytes=151 protocol=http
+2021-03-08T08:57:00.802297+00:00 heroku[router]: at=info method=GET path="/" host=topiaclass.herokuapp.com request_id=33d1dbeb-00aa-40e0-b1f9-0902c87cc5b9 fwd="80.62.116.167" dyno=web.1 connect=1ms service=4ms status=200 bytes=735 protocol=http
+2021-03-08T08:57:00.957129+00:00 heroku[router]: at=info method=GET path="/style.css" host=topiaclass.herokuapp.com request_id=f629f06e-b7c6-4ae2-b4c9-8894e7735543 fwd="80.62.116.167" dyno=web.1 connect=1ms service=3ms status=304 bytes=237 protocol=http
+2021-03-08T08:57:00.962042+00:00 heroku[router]: at=info method=GET path="/js/jquery-1.11.3.min.js" host=topiaclass.herokuapp.com request_id=76941bac-3208-4ba6-a0b8-a721275a1477 fwd="80.62.116.167" dyno=web.1 connect=0ms service=2ms status=304 bytes=239 protocol=http
+2021-03-08T08:57:01.076454+00:00 heroku[router]: at=info method=GET path="/js/admin.js" host=topiaclass.herokuapp.com request_id=65b8519c-c660-4dc2-9fb1-c67971ff6dd7 fwd="80.62.116.167" dyno=web.1 connect=0ms service=1ms status=304 bytes=238 protocol=http
+2021-03-08T09:32:47.601480+00:00 heroku[web.1]: Idling
+2021-03-08T09:32:47.625513+00:00 heroku[web.1]: State changed from up to down
+2021-03-08T09:32:52.834846+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2021-03-08T09:32:52.936416+00:00 heroku[web.1]: Process exited with status 143
+2021-03-08T19:50:27.000000+00:00 app[api]: Build started by user langsford.steven@gmail.com
+2021-03-08T19:51:10.439743+00:00 app[api]: Deploy f31c4918 by user langsford.steven@gmail.com
+2021-03-08T19:51:10.439743+00:00 app[api]: Release v23 created by user langsford.steven@gmail.com
+2021-03-08T19:51:10.603175+00:00 heroku[web.1]: State changed from down to starting
+2021-03-08T19:51:11.000000+00:00 app[api]: Build succeeded
+2021-03-08T19:51:24.671679+00:00 heroku[web.1]: Starting process with command `npm start`
+2021-03-08T19:51:28.413208+00:00 app[web.1]: 
+2021-03-08T19:51:28.413259+00:00 app[web.1]: > server@1.0.0 start /app
+2021-03-08T19:51:28.413260+00:00 app[web.1]: > nodemon server.js
+2021-03-08T19:51:28.413261+00:00 app[web.1]: 
+2021-03-08T19:51:28.867795+00:00 app[web.1]: [33m[nodemon] 2.0.7[39m
+2021-03-08T19:51:28.877895+00:00 app[web.1]: [33m[nodemon] to restart at any time, enter `rs`[39m
+2021-03-08T19:51:28.878544+00:00 app[web.1]: [33m[nodemon] watching path(s): *.*[39m
+2021-03-08T19:51:28.878635+00:00 app[web.1]: [33m[nodemon] watching extensions: js,mjs,json[39m
+2021-03-08T19:51:28.879475+00:00 app[web.1]: [32m[nodemon] starting `node server.js`[39m
+2021-03-08T19:51:29.488768+00:00 app[web.1]: server is running on port 41841
+2021-03-08T19:51:29.578026+00:00 heroku[web.1]: State changed from starting to up
+2021-03-08T19:51:31.891832+00:00 heroku[router]: at=info method=GET path="/" host=topiaclass.herokuapp.com request_id=8d11a548-d1c9-4c68-be44-dbd7da87bc9f fwd="84.238.69.170" dyno=web.1 connect=0ms service=37ms status=200 bytes=735 protocol=https
+2021-03-08T19:51:32.250010+00:00 heroku[router]: at=info method=GET path="/style.css" host=topiaclass.herokuapp.com request_id=8aec72c6-d947-432c-ab55-d78d41f8a494 fwd="84.238.69.170" dyno=web.1 connect=0ms service=22ms status=200 bytes=869 protocol=https
+2021-03-08T19:51:32.464491+00:00 heroku[router]: at=info method=GET path="/js/jquery-1.11.3.min.js" host=topiaclass.herokuapp.com request_id=0c8b4144-8c7b-4cd1-a6ab-110439278f53 fwd="84.238.69.170" dyno=web.1 connect=0ms service=16ms status=200 bytes=96262 protocol=https
+2021-03-08T19:51:32.466560+00:00 heroku[router]: at=info method=GET path="/js/admin.js" host=topiaclass.herokuapp.com request_id=b6ddf8f1-f03e-4683-8548-2dfef6d9fae2 fwd="84.238.69.170" dyno=web.1 connect=1ms service=13ms status=200 bytes=25273 protocol=https
+2021-03-08T19:51:32.908566+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=topiaclass.herokuapp.com request_id=00dc3670-6d2a-414a-9f6d-88fac945a643 fwd="84.238.69.170" dyno=web.1 connect=0ms service=5ms status=404 bytes=394 protocol=https
+2021-03-08T19:51:46.985962+00:00 heroku[router]: at=info method=GET path="/exp" host=topiaclass.herokuapp.com request_id=7a82a07f-f9c6-4a4b-b45a-e1845ced02ef fwd="84.238.69.170" dyno=web.1 connect=0ms service=11ms status=200 bytes=731 protocol=https
+2021-03-08T19:51:47.210910+00:00 heroku[router]: at=info method=GET path="/style.css" host=topiaclass.herokuapp.com request_id=def2d7d8-b124-4d09-850f-484a559706be fwd="84.238.69.170" dyno=web.1 connect=0ms service=10ms status=304 bytes=237 protocol=https
+2021-03-08T19:51:47.212822+00:00 heroku[router]: at=info method=GET path="/js/jquery-1.11.3.min.js" host=topiaclass.herokuapp.com request_id=0d01454c-eef3-4749-8cf7-88767252d942 fwd="84.238.69.170" dyno=web.1 connect=1ms service=11ms status=304 bytes=239 protocol=https
+2021-03-08T19:51:47.216511+00:00 heroku[router]: at=info method=GET path="/js/exp.js" host=topiaclass.herokuapp.com request_id=459e6cbd-004b-4de6-a4cf-6946f1f2ff5e fwd="84.238.69.170" dyno=web.1 connect=1ms service=15ms status=200 bytes=67563 protocol=https
+2021-03-08T19:51:47.526729+00:00 heroku[router]: at=info method=GET path="/img/blank.png" host=topiaclass.herokuapp.com request_id=99d62304-9cce-423b-bd19-9dff41ecbf02 fwd="84.238.69.170" dyno=web.1 connect=0ms service=5ms status=200 bytes=704 protocol=https
+2021-03-08T19:51:48.573104+00:00 heroku[router]: at=info method=GET path="/img/live/5fe4304e377bc37d1369064d.jpeg" host=topiaclass.herokuapp.com request_id=61d950bf-f27b-4b75-beb3-549130c0890f fwd="84.238.69.170" dyno=web.1 connect=0ms service=21ms status=200 bytes=387693 protocol=https
+2021-03-08T19:51:52.910110+00:00 app[web.1]: error: no pg_hba.conf entry for host "3.86.242.183", user "fjbgsaerhryhhc", database "d7hbcemvajjeif", SSL off
+2021-03-08T19:51:52.910120+00:00 app[web.1]: at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:278:15)
+2021-03-08T19:51:52.910121+00:00 app[web.1]: at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+2021-03-08T19:51:52.910122+00:00 app[web.1]: at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+2021-03-08T19:51:52.910123+00:00 app[web.1]: at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:10:42)
+2021-03-08T19:51:52.910123+00:00 app[web.1]: at Socket.emit (events.js:315:20)
+2021-03-08T19:51:52.910125+00:00 app[web.1]: at addChunk (internal/streams/readable.js:309:12)
+2021-03-08T19:51:52.910125+00:00 app[web.1]: at readableAddChunk (internal/streams/readable.js:284:9)
+2021-03-08T19:51:52.910126+00:00 app[web.1]: at Socket.Readable.push (internal/streams/readable.js:223:10)
+2021-03-08T19:51:52.910126+00:00 app[web.1]: at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+2021-03-08T19:51:52.910127+00:00 app[web.1]: length: 166,
+2021-03-08T19:51:52.910127+00:00 app[web.1]: severity: 'FATAL',
+2021-03-08T19:51:52.910128+00:00 app[web.1]: code: '28000',
+2021-03-08T19:51:52.910128+00:00 app[web.1]: detail: undefined,
+2021-03-08T19:51:52.910128+00:00 app[web.1]: hint: undefined,
+2021-03-08T19:51:52.910129+00:00 app[web.1]: position: undefined,
+2021-03-08T19:51:52.910129+00:00 app[web.1]: internalPosition: undefined,
+2021-03-08T19:51:52.910129+00:00 app[web.1]: internalQuery: undefined,
+2021-03-08T19:51:52.910130+00:00 app[web.1]: where: undefined,
+2021-03-08T19:51:52.910131+00:00 app[web.1]: schema: undefined,
+2021-03-08T19:51:52.910131+00:00 app[web.1]: table: undefined,
+2021-03-08T19:51:52.910131+00:00 app[web.1]: column: undefined,
+2021-03-08T19:51:52.910132+00:00 app[web.1]: dataType: undefined,
+2021-03-08T19:51:52.910132+00:00 app[web.1]: constraint: undefined,
+2021-03-08T19:51:52.910133+00:00 app[web.1]: file: 'auth.c',
+2021-03-08T19:51:52.910133+00:00 app[web.1]: line: '496',
+2021-03-08T19:51:52.910133+00:00 app[web.1]: routine: 'ClientAuthentication'
+2021-03-08T19:51:52.910134+00:00 app[web.1]: }
+2021-03-08T19:51:53.848199+00:00 heroku[router]: at=info method=GET path="/img/live/5fd8d7940f668aea0566c23f.jpeg" host=topiaclass.herokuapp.com request_id=3da51a97-ec17-4f71-951e-525cbaf7766b fwd="84.238.69.170" dyno=web.1 connect=0ms service=6ms status=200 bytes=103789 protocol=https
+2021-03-08T19:52:00.040880+00:00 app[web.1]: error: no pg_hba.conf entry for host "3.86.242.183", user "fjbgsaerhryhhc", database "d7hbcemvajjeif", SSL off
+2021-03-08T19:52:00.040891+00:00 app[web.1]: at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:278:15)
+2021-03-08T19:52:00.040892+00:00 app[web.1]: at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+2021-03-08T19:52:00.040893+00:00 app[web.1]: at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+2021-03-08T19:52:00.040893+00:00 app[web.1]: at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:10:42)
+2021-03-08T19:52:00.040894+00:00 app[web.1]: at Socket.emit (events.js:315:20)
+2021-03-08T19:52:00.040894+00:00 app[web.1]: at addChunk (internal/streams/readable.js:309:12)
+2021-03-08T19:52:00.040895+00:00 app[web.1]: at readableAddChunk (internal/streams/readable.js:284:9)
+2021-03-08T19:52:00.040895+00:00 app[web.1]: at Socket.Readable.push (internal/streams/readable.js:223:10)
+2021-03-08T19:52:00.040896+00:00 app[web.1]: at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+2021-03-08T19:52:00.040897+00:00 app[web.1]: length: 166,
+2021-03-08T19:52:00.040897+00:00 app[web.1]: severity: 'FATAL',
+2021-03-08T19:52:00.040897+00:00 app[web.1]: code: '28000',
+2021-03-08T19:52:00.040898+00:00 app[web.1]: detail: undefined,
+2021-03-08T19:52:00.040898+00:00 app[web.1]: hint: undefined,
+2021-03-08T19:52:00.040898+00:00 app[web.1]: position: undefined,
+2021-03-08T19:52:00.040899+00:00 app[web.1]: internalPosition: undefined,
+2021-03-08T19:52:00.040899+00:00 app[web.1]: internalQuery: undefined,
+2021-03-08T19:52:00.040900+00:00 app[web.1]: where: undefined,
+2021-03-08T19:52:00.040900+00:00 app[web.1]: schema: undefined,
+2021-03-08T19:52:00.040900+00:00 app[web.1]: table: undefined,
+2021-03-08T19:52:00.040901+00:00 app[web.1]: column: undefined,
+2021-03-08T19:52:00.040901+00:00 app[web.1]: dataType: undefined,
+2021-03-08T19:52:00.040902+00:00 app[web.1]: constraint: undefined,
+2021-03-08T19:52:00.040902+00:00 app[web.1]: file: 'auth.c',
+2021-03-08T19:52:00.040902+00:00 app[web.1]: line: '496',
+2021-03-08T19:52:00.040903+00:00 app[web.1]: routine: 'ClientAuthentication'
+2021-03-08T19:52:00.040903+00:00 app[web.1]: }
+2021-03-08T19:52:00.997422+00:00 heroku[router]: at=info method=GET path="/img/live/5fe009f5377bc37d1369036a.jpeg" host=topiaclass.herokuapp.com request_id=85bd1f7e-43ca-44be-aa63-a2e010615483 fwd="84.238.69.170" dyno=web.1 connect=2ms service=34ms status=200 bytes=247198 protocol=https
+2021-03-08T19:52:04.318873+00:00 heroku[router]: at=info method=GET path="/done" host=topiaclass.herokuapp.com request_id=4928dc3f-c31d-4327-bc4f-169c11502d7c fwd="84.238.69.170" dyno=web.1 connect=1ms service=4ms status=200 bytes=1479 protocol=https
+2021-03-08T19:52:04.556825+00:00 heroku[router]: at=info method=GET path="/js/jquery-1.11.3.min.js" host=topiaclass.herokuapp.com request_id=75782bad-538d-4c82-8f90-57708ab60e19 fwd="84.238.69.170" dyno=web.1 connect=1ms service=8ms status=304 bytes=239 protocol=https
+2021-03-08T19:52:04.876076+00:00 heroku[router]: at=info method=GET path="/style.css" host=topiaclass.herokuapp.com request_id=95ee2f80-1461-4515-8374-49356eb6210f fwd="84.238.69.170" dyno=web.1 connect=1ms service=2ms status=304 bytes=237 protocol=https
+2021-03-08T19:52:22.837018+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=POST path="/writeresponse" host=topiaclass.herokuapp.com request_id=be7f6743-1551-4398-9ed3-e9db5630c9a8 fwd="84.238.69.170" dyno=web.1 connect=0ms service=30000ms status=503 bytes=0 protocol=https
+2021-03-08T19:52:29.953572+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=POST path="/writeresponse" host=topiaclass.herokuapp.com request_id=18abe6da-ea52-4784-b47d-e658954032de fwd="84.238.69.170" dyno=web.1 connect=0ms service=30002ms status=503 bytes=0 protocol=https
