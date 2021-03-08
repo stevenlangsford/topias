@@ -23,6 +23,15 @@ p {
     width:100%;
  }
 
+.instructions {
+    display:block;
+    padding:10% 0;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    width:100%;
+ }
+
  button {
      font-size:1.2em;
      border-radius:.5em;

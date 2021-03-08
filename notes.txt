@@ -1,0 +1,2 @@
+https://help.heroku.com/DR0TTWWD/seeing-fatal-no-pg_hba-conf-entry-errors-in-postgres
+https://devcenter.heroku.com/articles/automated-certificate-management

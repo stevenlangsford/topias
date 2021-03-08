@@ -10,7 +10,7 @@ var instructionlist = ["Hi! This page is a tool for getting ratings on SDG image
 
 function nextInstructions(){
     var nextButton = "<button id='nextbutton' onclick='nextInstructions()'>Next</button>"
-    document.getElementById("uberdiv").innerHTML="<p class='centered'>"+instructionlist[instructionindex]+"</br>"+nextButton+"</p>";
+    document.getElementById("uberdiv").innerHTML="<p class='instructions'>"+instructionlist[instructionindex]+"</br>"+nextButton+"</p>";
     instructionindex++;
     if(instructionindex>=instructionlist.length) demographics()//quiz() //skip the quiz, this is for SAH internal folks, they'll be fine.
 }

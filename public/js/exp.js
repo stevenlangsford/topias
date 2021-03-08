@@ -71,7 +71,9 @@ function responseListener(aresponse){//global so it'll be just sitting here avai
 function askReason(){
     //draw a question to the screen
     question_type = "topia_reason"
-    document.getElementById("uberdiv").innerHTML = "<p style='text-align:center; width:100%; font-size:2.5em'>Why?</p></br><p style='float:left; padding:70px'>F=color</p><p style='float:right;padding:70px'>H=Shape</p></br><p class='centered'>G=Texture</p>";
+    document.getElementById("uberdiv").innerHTML =
+	"<div class='trialdiv'><img src='/img/live/"+(trials[trialindex].img_id)+"'</img></div>"+
+    "<div class='footer' style='text-align:center; width:100%'><p>Why?</p><p>F = color &nbsp &nbsp G = texture  &nbsp &nbsp H = shape</p></div>"
 }
 
 function drawBlank(){
