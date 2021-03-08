@@ -86,7 +86,8 @@ function nextTrial(){
 	
     }else{
 	console.log("finish")
-	$.post("/finish",function(data){window.location.replace(data)});
+	    window.location.replace("done")
+//	$.post("/finish",function(data){window.location.replace(data)});
     }
 }
 
