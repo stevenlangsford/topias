@@ -7,13 +7,46 @@ const db = require("./db");
 
 const  jcsv = require('json2csv');
 const helmet = require('helmet'); //minimal security best practices. Sets HTTP headers to block first-pass vulnerability sniffing and clickjacking stuff.
-
+const session = require('client-sessions');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));//??
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-app.use(helmet()); //default settings
+//app.use(helmet()); //default settings
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
+app.use(session({
+  cookieName: 'session',
+  secret: 'not_the_actual_secret',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
+
+
+function requireLogin (request, response, next) {
+    console.log("in req login");
+    if (request.session.authtoken) {
+	console.log("got authtoken")
+	next();
+    } else {
+	console.log("req login auth notyet")
+	response.render('dashboard',{auth:"notyet"});
+    }
+};
+
+app.post('/login',function(req,res){
+    console.log("hit login with"+req.body.token)
+    if(req.body.token=="keys"){
+	req.session.authtoken=true; //set session token
+	res.render("dashboard",{auth:"true"})
+	console.log("session auth true")
+    }
+});
 
 app.get('/', function (req, res) {
     res.render("index");
@@ -27,6 +60,9 @@ app.get('/exp', function (req, res) {
 app.get('/done', function (req, res) {
     res.render("outro");
    
+})
+app.get('/dashboard', function (req, res){
+    res.render("dashboard",{auth:"notyet"})
 })
 // app.get("/runme", async (req, res)=>{
 //     const result =  await db.query('select * from demographics;')
@@ -54,7 +90,7 @@ app.post("/writeresponse", async (req, res) => {
 //how the javascript hits this post route:
 //$.post( "mypost",{time: Date.now(), value: JSON.stringify(some_js_object) } );
 
-app.get("/readdemo", async function(req,res){
+app.get("/readdemo", requireLogin, async function(req,res){
     try{
     const results = await db.query("SELECT * FROM demographics;")
     var fields = Object.keys(JSON.parse(results.rows[0].demoobj));
@@ -71,7 +107,7 @@ app.get("/readdemo", async function(req,res){
     }
 })//end get readdemo
 
-app.get("/readresponses", async function(req,res){
+app.get("/readresponses", requireLogin, async function(req,res){
     try{
     const results = await db.query("SELECT * FROM responses;")
     var fields = Object.keys(JSON.parse(results.rows[0].response));
