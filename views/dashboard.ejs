@@ -19,8 +19,10 @@
 <!-- } -->
 
 function login(){
-$.post("/login",{token:document.getElementById('logintextarea').value});
-window.location.reload(true)
+$.post("/login",{token:document.getElementById('logintextarea').value},
+function(data){
+window.location.reload(true);
+});
 }
 
 	</script>
@@ -31,8 +33,8 @@ window.location.reload(true)
 	<script>console.log("auth notyet")</script>
 	<p>Login key:<textarea id='logintextarea'></textarea><button onclick='login()'>Login</button>
 	  <%}else{%>
-	  <script>console.log("authok")</script>
-	<p>Auth cookie set</p>
+	  <button onclick="window.location.replace('/readdemo')">Get demographics</button>
+	  <button onclick="window.location.replace('/readresponses')">Get responses</button>
 	<%}%>
       </div>
   </body>

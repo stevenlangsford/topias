@@ -22,29 +22,24 @@ app.use(
 
 app.use(session({
   cookieName: 'session',
-  secret: 'not_the_actual_secret',
+  secret: process.env.COOKIE_SECRET,
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
 }));
 
 
 function requireLogin (request, response, next) {
-    console.log("in req login");
     if (request.session.authtoken) {
-	console.log("got authtoken")
 	next();
     } else {
-	console.log("req login auth notyet")
 	response.render('dashboard',{auth:"notyet"});
     }
 };
 
 app.post('/login',function(req,res){
-    console.log("hit login with"+req.body.token)
-    if(req.body.token=="keys"){
+    if(req.body.token==process.env.DATA_PWD){
 	req.session.authtoken=true; //set session token
-	res.render("dashboard",{auth:"true"})
-	console.log("session auth true")
+	res.status(200).send()
     }
 });
 
@@ -62,13 +57,13 @@ app.get('/done', function (req, res) {
    
 })
 app.get('/dashboard', function (req, res){
-    res.render("dashboard",{auth:"notyet"})
+    if(req.session.authtoken==undefined) {
+	res.render("dashboard",{auth:"notyet"})
+    }else{
+	res.render("dashboard",{auth:"true"})
+    }
+    
 })
-// app.get("/runme", async (req, res)=>{
-//     const result =  await db.query('select * from demographics;')
-//     res.json({status:'success',
-// 	      value:result})
-// })
 
 
 app.post("/writedemo", async (req, res) => {
@@ -123,30 +118,5 @@ app.get("/readresponses", requireLogin, async function(req,res){
 	console.log(err)
     }
 })//end get readresponses. 
-
-
-
-// app.get("/getdemographics",requireLogin,function(req,res){
-//     var pool = new pg.Pool({connectionString:process.env.DATABASE_URL});
-//     pool.connect(function(err,client,done){
-// 	client.query('select * from demographics',function(err,result){
-// 	    if(err){
-// 		{console.error(err); res.send("Error "+err);}
-// 		}else{
-// 		    //TODO do something sensible if there are no results!
-// 		    var fields = Object.keys(JSON.parse(result.rows[0].demoobj));
-// 		    var responses = [];
-// 		    	   for(var i=0;i<result.rowCount;i++){
-// 			       responses.push(JSON.parse(result.rows[i].demoobj));
-// 			   }
-// 		    var response_csv = json2csv({data: responses, fields:fields});
-// 		    res.attachment("demographicsdata.csv");
-// 		    res.send(response_csv);
-// 		}
-// 	});//end query
-//     });
-//     pool.end();    
-// });
-
 
 app.listen(port, ()=>{console.log(`server is running on port ${port}`)})
