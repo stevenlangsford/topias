@@ -5,7 +5,7 @@ localStorage.setItem("utopia_left",utopia_left);
 
 var dev = false;//used only in instuctionlist (immediately below) for the moment, could consider putting it in localStorage though and having it trigger verbosity later. Set to false if public-facing.
 var instructionindex = 0;
-var instructionlist = ["Hi! This page is a tool for getting ratings on SDG images.","You'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","After each decision, you'll be asked if the main factor in your decision was the <strong>colors</strong> in the image, the <strong>texture</strong> of the image, or the <strong>shapes</strong> in the image.","To say that color was most important in your decision, press F </br> To say that texture was most important in your decision, press G</br> To say that shape was most important in your decision, press H","We also ask for a unique rater ID. Please just use your first and last name without spaces. Thanks!"
+var instructionlist = ["Hi! This page is a tool for getting ratings on SDG images.","This is part of a study being run by Aarhus University's Science at Home. Any questions, comments, or concerns, please contact Steven Langsford. No identifying data is recorded (unless you provide it in a text box), and you are free to quit at any time by closing the browser window. The study can take up to half an hour to complete, please ensure you have this time free from interruptions or distractions before beginning. We don't believe there is any risk associated with participation. But note that this does not currently have formal ethics approval and is suitable for SAH internal use only.","In this task, you'll be shown a series of images.","For each image, tap A on your keyboard if it is "+(utopia_left ? "UTOPIAN":"DYSTOPIAN")+" and L if it is "+(!utopia_left ? "UTOPIAN":"DYSTOPIAN")+"","A utopian image is a future paradise where society is doing great. For images that look like one of these, press "+(utopia_left ? "A":"L")+". A dystopia is a nightmarish future where society has gone horribly wrong. For images that look like this, press "+(utopia_left ? "L":"A")+". If you're not sure, pick the category the image is most similar to, even if it's not a particularly good example.","After each decision, you'll be asked if the main factor in your decision was the <strong>colors</strong> in the image, the <strong>composition</strong> of the image, or a <strong>motif</strong> in the image.","Please respond <strong>color</strong> using the F key if the colors used in the image the primary reason for your classification.</br></br> Please responsd <strong>composition</strong> using the G key if the way elements were arranged in the image the primary reason for your classification.</br></br> Please respond <strong>motif</strong> using the H key if there was a specific identifiable element such as trees, a river, or a building, which was the primary reason for your classification.","A couple important housekeeping things! This study assumes you are using a QWERTY keyboard (and a modern browser such as firefox or chrome). If you usually wear glasses for screen work, please ensure you are wearing them before continuing.","Let's begin!"
 ]
 
 function nextInstructions(){
@@ -84,9 +84,9 @@ function demographics(){
     	"<input type=\"radio\" name=\"colblind\" id=\"notcolblind\" value=\"normalcolor\">&nbsp No &nbsp&nbsp"+
     	"</td></tr>"+
 	"<tr><td>"+
-    	"Do you have normal or corrected-to-normal vision <br/>(ie. either you don't use glasses OR you have them on now): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes, normal vision &nbsp&nbsp"+
-    	"<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No: I use glasses but don't have them on now &nbsp&nbsp"+
-    	"</td></tr>"+
+    	// "Do you have normal or corrected-to-normal vision <br/>(ie. either you don't use glasses OR you have them on now): <input type=\"radio\" name=\"normalvision\" id=\"nvision\" value=\"yesnormal\">&nbsp Yes, normal vision &nbsp&nbsp"+
+    	// "<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No: I use glasses but don't have them on now &nbsp&nbsp"+
+    	// "</td></tr>"+
 
     "<tr><td>"+
     	"Are you right-handed? <input type=\"radio\" name=\"righthand\" id=\"righty\" value=\"righthand\">&nbsp Right handed &nbsp&nbsp"+
@@ -96,7 +96,7 @@ function demographics(){
     	// "Age:<input type=\"text\" id=\"age\">"+
     	// "</td></tr>"+
     	// "<tr><td>"+
-    	"Please enter your first and last name without spaces (as your unique raterid):<input type=\"text\" id=\"raterid\">"+
+    	"If you want to be able to break anonymity in order to identify a particular rating session, please enter a unique session id here:<input type=\"text\" id=\"raterid\">"+
     	"</td></tr>"+
     	// "<tr><td>"+
     	// "Country you currently live in:"+countrypicker()+
@@ -409,15 +409,15 @@ function demographicsvalidate(){
     	}
     }
 
-    var normalvision=document.getElementsByName("normalvision");
-    var visionflag = false;
-    for(var i=0;i<normalvision.length;i++){
-	console.log("checking "+i+"status"+normalvision[i].checked)
-    	if(normalvision[i].checked){
-    	    dataObj.vision = normalvision[i].value;
-    	    visionflag=true;
-    	}
-    }
+    // var normalvision=document.getElementsByName("normalvision");
+    // var visionflag = false;
+    // for(var i=0;i<normalvision.length;i++){
+    // 	console.log("checking "+i+"status"+normalvision[i].checked)
+    // 	if(normalvision[i].checked){
+    // 	    dataObj.vision = normalvision[i].value;
+    // 	    visionflag=true;
+    // 	}
+    // }
 
     var righthanded=document.getElementsByName("righthand");
     var handedflag = false;
@@ -432,8 +432,10 @@ function demographicsvalidate(){
     var myraterid = document.getElementById("raterid").value;
     dataObj.raterid = myraterid;
     var rateridflag = myraterid.length>0;
-    console.log(dataObj);
-    if(colblindflag&&rateridflag&&visionflag&&handedflag){
+    if(!rateridflag) myraterid = "anonymous"
+
+    console.log(dataObj);    
+    if(colblindflag&&handedflag){//dropped: visionflag, rateridflag
 	$.post("writedemo",{time: Date.now(), value: JSON.stringify(dataObj)})
 	startExp();
     }else {alert("Please answer all the questions.");}
