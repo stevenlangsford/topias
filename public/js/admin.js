@@ -88,10 +88,10 @@ function demographics(){
     	// "<input type=\"radio\" name=\"normalvision\" id=\"badvision\" value=\"notnormal\">&nbsp No: I use glasses but don't have them on now &nbsp&nbsp"+
     	// "</td></tr>"+
 
-    "<tr><td>"+
-    	"Are you right-handed? <input type=\"radio\" name=\"righthand\" id=\"righty\" value=\"righthand\">&nbsp Right handed &nbsp&nbsp"+
-    	"<input type=\"radio\" name=\"righthand\" id=\"leftie\" value=\"lefthand\">&nbsp Left handed &nbsp&nbsp"+
-    	"</td></tr>"+
+    // "<tr><td>"+
+    // 	"Are you right-handed? <input type=\"radio\" name=\"righthand\" id=\"righty\" value=\"righthand\">&nbsp Right handed &nbsp&nbsp"+
+    // 	"<input type=\"radio\" name=\"righthand\" id=\"leftie\" value=\"lefthand\">&nbsp Left handed &nbsp&nbsp"+
+    // 	"</td></tr>"+
     	// "<tr><td>"+
     	// "Age:<input type=\"text\" id=\"age\">"+
     	// "</td></tr>"+
@@ -419,15 +419,15 @@ function demographicsvalidate(){
     // 	}
     // }
 
-    var righthanded=document.getElementsByName("righthand");
-    var handedflag = false;
-    for(var i=0;i<righthanded.length;i++){
-	console.log("checking "+i+"status"+righthanded[i].checked)
-    	if(righthanded[i].checked){
-    	    dataObj.handed = righthanded[i].value;
-    	    handedflag=true;
-    	}
-    }   
+    // var righthanded=document.getElementsByName("righthand");
+    // var handedflag = false;
+    // for(var i=0;i<righthanded.length;i++){
+    // 	console.log("checking "+i+"status"+righthanded[i].checked)
+    // 	if(righthanded[i].checked){
+    // 	    dataObj.handed = righthanded[i].value;
+    // 	    handedflag=true;
+    // 	}
+    // }   
     
     var myraterid = document.getElementById("raterid").value;
     dataObj.raterid = myraterid;
@@ -435,7 +435,7 @@ function demographicsvalidate(){
     if(!rateridflag) myraterid = "anonymous"
 
     console.log(dataObj);    
-    if(colblindflag&&handedflag){//dropped: visionflag, rateridflag
+    if(colblindflag){//dropped: visionflag, rateridflag, handedflag
 	$.post("writedemo",{time: Date.now(), value: JSON.stringify(dataObj)})
 	startExp();
     }else {alert("Please answer all the questions.");}
