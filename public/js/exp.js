@@ -47,7 +47,7 @@ function reasonListener(areason){
     trials[trialindex].reasonTime= Date.now();
     trials[trialindex].reasonKey = areason;
     if(areason=='F') trials[trialindex].reasonMeans="color"
-    if(areason=='G') trials[trialindex].reasonMeans="composition"
+    if(areason=='G') trials[trialindex].reasonMeans="style"
     if(areason=='H') trials[trialindex].reasonMeans="motif"
     
     console.log("posting:"+JSON.stringify(trials[trialindex]));
@@ -73,7 +73,7 @@ function askReason(){
     question_type = "topia_reason"
     document.getElementById("uberdiv").innerHTML =
 	"<div class='trialdiv'><img src='/img/live/"+(trials[trialindex].img_id)+"'</img></div>"+
-    "<div class='footer' style='text-align:center; width:100%'><p>Why?</p><p>F = color &nbsp &nbsp G = composition  &nbsp &nbsp H = motif</p></div>"
+    "<div class='footer' style='text-align:center; width:100%'><p>Why?</p><p>F = color &nbsp &nbsp G = style  &nbsp &nbsp H = motif</p></div>"
 }
 
 function drawBlank(){
